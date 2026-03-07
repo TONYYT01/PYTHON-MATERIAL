@@ -49,3 +49,117 @@ try:
 except ValueError as e:
     print(e)
 ```
+### Another One strong example
+
+```python
+from abc import ABC,abstractmethod
+class Bank_System(ABC):
+    account_counter=0
+    def __init__(self,data,amount=0):
+        self.data=data
+        self.__amount=amount
+        Bank_System.account_counter+=1
+        self.acc_NO=Bank_System.account_counter
+    @abstractmethod
+    def Account_type(self):
+        pass
+    def WithDraw(self,amount):
+        if self.__amount>=amount:
+            self.__amount-=amount
+            print("Money Credited sucessfully")
+        else:
+            print("Insuffent Balance")
+    def Deposit(self,amount):
+        self.__amount+=amount
+        print("Money deposited sucessfully")
+    def Balance(self):
+        print(self.__amount)
+class Savings_Account(Bank_System):
+    def __init__(self,data,amount):
+        super().__init__(data,amount)
+        self.Account_type()
+    def Account_type(self):
+        self.type="savings"
+        print("Savings Account Created \nAccount Number : ",self.acc_NO)
+class Current_Account(Bank_System):
+    def __init__(self,data,amount):
+        super().__init__(data,amount)
+        if amount>=500:
+            pass
+        else:
+            raise ValueError("Please Enter the amount above 500")
+        self.Account_type()
+    def Account_type(self):
+        self.type="Current"
+        print("Current Account Created \n Account Number : ",self.acc_NO)
+ui=1
+accounts={}
+while(ui>0):
+    print("1.Account_Create\n2.With_Draw\n3.Deposit\n4.Balance\n5.0 to exit")
+    ui=int(input())
+    match(ui):
+        case 1:
+            First_Name=input("Enter your First name : ")
+            last_name=input("Enter your last name : ")
+            phone_no=int(input("Enter your phone number : "))
+            data={"First_Name":First_Name,"Last_Name":last_name,"Phone_Number":phone_no}
+            print("IF you want to add the money")
+            print("1.Yes\n2.No")
+            money_choise=int(input())
+            if money_choise==1:
+                money=float(input("Enter the amount : "))
+            else:
+                money=0
+            print("1.Savings Account\n2.Current Account")
+            ty=int(input())
+            if ty==1:
+                New_account=Savings_Account(data,money)
+            else:
+                if money>500:
+                    New_account=Current_Account(data,money)
+                else:
+                    while(money<500):
+                        money=float(input("Enter the money above 500 : "))
+                    New_account=Current_Account(data,money)
+            accounts[New_account.acc_NO]=New_account
+        case 2:
+            Account_number=int(input("Enter the Account Number"))
+            if Account_number in accounts:
+                user=accounts[Account_number]
+                print("Security reasons enter the phone number ")
+                phone_number=int(input("Enter the Phone number : "))
+                if user.data["Phone_Number"]==phone_number:
+                    money=float(input("Enter the money : "))
+                    user.WithDraw(money)
+                else:
+                    print("Invalid phone number")
+            else:
+                print("Account not found")
+        case 3:
+            Account_number=int(input("Enter the account_number : "))
+            if Account_number in accounts:
+                user=accounts[Account_number]
+                phone_number=int(input("Enter the phone number : "))
+                if user.data["Phone_Number"]==phone_number:
+                    money=float(input("Enter the amount : "))
+                    user.Deposit(money)
+                else:
+                    print("Enter valid phone number : ")
+            else:
+                print("Account not found")
+        case 4:
+            Account_number=int(input("Enter the Account Number : "))
+            if Account_number in accounts:
+                user=accounts[Account_number]
+                phone_number=int(input("Enter  the phone number : "))
+                if user.data["Phone_Number"]==phone_number:
+                    user.Balance()
+                else:
+                    print("Enter the Valid phone number")
+            else:
+                print("account not found")
+        case 5:
+            ui=0
+            print("Bye")
+
+```
