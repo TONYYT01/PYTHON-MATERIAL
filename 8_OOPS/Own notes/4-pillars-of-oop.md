@@ -118,4 +118,7 @@ class Cat:
 - In this some core content is there we will discuss later
 - As of now basic level of idea is enough
 - core concept -> [Core concept]()
+
+#### [Level 1 concepts](Level1.md)
+
 ## [Back-to Basics](OOP.md)
