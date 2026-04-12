@@ -121,4 +121,63 @@ print(Bank_System.Bank_name)
 - Not be class Variable changed
 
 ### Types of methods
-- 
+- This are the decoraters used in our python
+- Instance methood
+- Class method
+- Static method
+
+### Instance method
+
+- The instance method is used we are working on the Object data like instance variable
+```python
+class Bank_System:
+    def __init__(self,name,Amount):
+        self.name=name
+        self.Amount=Amount
+    def Data(self):
+        print(self.name,self.Amount)
+A1=Bank_System("Naveen",1234)
+(A1.Data())
+```
+### Class Methods
+- This class methods is used and working on the class Variables
+- By using the `@classmethod` we can declare in the python
+```python
+class Bank_system:
+    Account_Number=1000
+    def __init__(self,name,Amount):
+        self.name=name
+        self.Amount=Amount
+        Bank_system.Account_Number+=1
+        self.Account_num=Bank_system.Account_Number
+    @classmethod
+    def Data(self):
+        print(self.Account_Number)
+A1=Bank_system("Naveen",2432)
+A2=Bank_system("Naveen",2432)
+A3=Bank_system("Naveen",2432)
+A4=Bank_system("Naveen",2432)
+A4.Data()
+```
+### Static method
+- This is like no data only logic it will work
+```python
+class Bank_System:
+    def __init__(self,name,Amount):
+        self.name=name
+        self.Amount=Amount
+    @staticmethod
+    def Check(amount):
+        return amount>0
+    def Data(self):
+        print(self.name,self.Amount)
+name=input()
+Amount=float(input())
+if Bank_System.Check(Amount):
+    Account=Bank_System(name,Amount)
+    Account.Data()
+else:
+    print("Check the amount you are entering")
+```
+
+- [Level 2 ->](Level2.md)
