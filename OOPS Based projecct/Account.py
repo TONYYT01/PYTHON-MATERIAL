@@ -24,12 +24,6 @@ class BankSystem(ABC):
             print("Deposit only graterthen 100")
     def balance(self):
         return self.__Amount
-    @staticmethod
-    def Check_Exist_Or_not(self,AccountNumber,PhoneNumber,Accounts):
-        if AccountNumber in Accounts and PhoneNumber in Accounts:
-            return True
-        else:
-            return False
     def __str__(self):
         return f"Account Number : {self.AccountNumber}\nName : {self.data['Name']} Age : {self.data['Age']}\nEmail : {self.data['Email']}\nAadher : {self.data['AadharNumber']}\nPhone number : {self.data['Phonenumber']}\nBalance : {self.balance()}\nAccount Type : {self.data['AccountType']}"
 class SavingsAccount(BankSystem):
@@ -112,6 +106,16 @@ while(user>=1):
             if Account:
                 print(Account)
         case 6:
+            Acnumber=int(input("Enter the Account Number : "))
+            Account=Accounts.get(Acnumber)
+            if Account:
+                print(Account.data["Name"])
+                Userinput=(input("Yes or No"))
+                if Userinput=="Yes":
+                    print("Transfred")
+            else:
+                print("Account Not Found")
+        case 7:
             user=0
             print("Thank you")
             
